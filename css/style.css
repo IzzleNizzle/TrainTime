@@ -1,3 +1,23 @@
+.jumbotron {
+    background-color: lightblue;
+}
+
+.table {
+    border: 1px lightblue solid;
+}
+
+.panel-heading {
+    background-image: none;
+}
+
+.panel-default {
+    background-image: none;
+}
+
+
+
+
+
 .box {
     border: solid 1px black;
     height: 25px;

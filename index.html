@@ -58,36 +58,83 @@
     <!-- Navbar End -->
 
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1>IzzleNizzle</h1>
-            <p>Hello there, this is my webpage.</p>
-            <p>
-                <a class="btn btn-primary btn-lg" href="Basic-Portfolio/index.html" role="button">"Basic Portfolio" &raquo;</a>
-                <a class="btn btn-primary btn-lg" href="Bootstrap-Portfolio/index.html" role="button">"Bootstrap Portfolio" &raquo;</a>
-                <a class="btn btn-primary btn-lg" href="Responsive-Portfolio/index.html" role="button">"Responsive Portfolio" &raquo;</a>
-                <a class="btn btn-primary btn-lg" href="week-4-game/index.html" role="button">"Week 4 Game's" &raquo;</a>
-                <a class="btn btn-primary btn-lg" href="TriviaGame/index.html" role="button">"Trivia Game" &raquo;</a>
-                <a class="btn btn-primary btn-lg" href="GifTastic/index.html" role="button">"Gif Freakin' Tastic!!!" &raquo;</a>
 
-            </p>
+    <!-- Build HTML Skelaton for "Current Train Schedule" Grid -->
+    <div class="container">
+
+
+        <!-- Build HTML Skelaton for Header (Train info) -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Train Scheduler</h1>
+                <p>Check the latest times and Schedules so you don't end up hitch hiking...</p>
+            </div>
         </div>
-    </div>
 
+        <!-- Build HTML Skelaton for Current Train Schedule -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Current Train Schedule</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4">Train Name</div>
+                            <div class="col-lg-2">Destination</div>
+                            <div class="col-lg-2">Frequency (min)</div>
+                            <div class="col-lg-2">Next Arrival</div>
+                            <div class="col-lg-2">Minutes Away</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    
+
+    <!-- Build HTML Skelaton for "Add Train" Form with Train name, Destination, First Train time (HH:mm military time) -->
+
+    <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Make Your Bid</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                             <div class="form-group">
+                                <label for="bidder-name">Your Name</label>
+                                <input class="form-control" id="bidder-name" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="bidder-price">Your Price</label>
+                                <input class="form-control" id="bidder-price" type="number">
+                            </div>
+                            <button class="btn btn-primary" id="submit-bid" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
     <footer class="footer">
         <div class="container">
             <p>Choose your Theme!</p>
-            
 
-                    <!-- Boxes for CSS Styling Feature -->
-                    <div class="box" id="box1"></div>
-                    <div class="box" id="box2"></div>
-                    <div class="box" id="box3"></div>
-                    <div class="box" id="box4"></div>
 
-           
+            <!-- Boxes for CSS Styling Feature -->
+            <div class="box" id="box1"></div>
+            <div class="box" id="box2"></div>
+            <div class="box" id="box3"></div>
+            <div class="box" id="box4"></div>
+
+
         </div>
     </footer>
 
@@ -96,7 +143,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- <script src="js/npm.js"></script> -->
+    <script src="js/app.js"></script>
 
 </body>
 
