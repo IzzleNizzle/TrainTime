@@ -14,7 +14,13 @@
     background-image: none;
 }
 
+hr {
+    margin: 20px 10px;
+}
 
+.bold-text {
+    font-weight: bold;
+}
 
 
 

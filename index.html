@@ -79,12 +79,13 @@
                         <h3 class="panel-title">Current Train Schedule</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="row">
+                        <div class="row bold-text">
                             <div class="col-lg-4">Train Name</div>
                             <div class="col-lg-2">Destination</div>
                             <div class="col-lg-2">Frequency (min)</div>
                             <div class="col-lg-2">Next Arrival</div>
                             <div class="col-lg-2">Minutes Away</div>
+                            <hr>
                         </div>
                     </div>
                 </div>
@@ -93,27 +94,31 @@
         </div>
 
 
-    
 
-    <!-- Build HTML Skelaton for "Add Train" Form with Train name, Destination, First Train time (HH:mm military time) -->
 
-    <div class="row">
+        <!-- Build HTML Skelaton for "Add Train" Form with Train name, Destination, First Train time (HH:mm military time) -->
+
+        <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Make Your Bid</h3>
+                        <h3 class="panel-title">Add Train</h3>
                     </div>
                     <div class="panel-body">
                         <form>
-                             <div class="form-group">
-                                <label for="bidder-name">Your Name</label>
-                                <input class="form-control" id="bidder-name" type="text">
+                            <div class="form-group">
+                                <label for="train-name">Train Name</label>
+                                <input class="form-control" id="train-name" type="text">
                             </div>
                             <div class="form-group">
-                                <label for="bidder-price">Your Price</label>
-                                <input class="form-control" id="bidder-price" type="number">
+                                <label for="destination">Destination</label>
+                                <input class="form-control" id="destination" type="text">
                             </div>
-                            <button class="btn btn-primary" id="submit-bid" type="submit">Submit</button>
+                            <div class="form-group">
+                                <label for="train-time">First Train time</label>
+                                <input class="form-control" id="train-time" type="time">
+                            </div>
+                            <button class="btn btn-primary" id="submit-train" type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -123,26 +128,26 @@
 
     </div>
 
+    <!-- Footer Begin -->
     <footer class="footer">
         <div class="container">
             <p>Choose your Theme!</p>
-
-
             <!-- Boxes for CSS Styling Feature -->
             <div class="box" id="box1"></div>
             <div class="box" id="box2"></div>
             <div class="box" id="box3"></div>
             <div class="box" id="box4"></div>
-
-
         </div>
     </footer>
+    <!-- Footer End -->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Bootstrap core JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Google's Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <!-- Bootstrap js -->
     <script src="js/bootstrap.min.js"></script>
+    <!-- My Custom js -->
     <script src="js/app.js"></script>
 
 </body>
