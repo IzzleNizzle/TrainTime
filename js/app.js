@@ -16,9 +16,7 @@ var db = firebase.database();
 var trainName,
   destination,
   trainTime,
-  trainInterval,
-  minutesAway,
-  nextArrival;
+  trainInterval;
 
 
 // on click function that submits the variables to the database using .ref().push() instead of .set
@@ -30,16 +28,12 @@ $("#submit-train").on("click", function () {
   destination = $("#destination").val().trim();
   trainTime = $("#train-time").val().trim();
   trainInterval = $("#train-interval").val().trim();
-  nextArrival = moment(getNextArrival(trainTime, trainInterval)).format("HH:mm:ss");
-  // minutesAway = getMinutesAway();
   
   db.ref().push({
     trainName: trainName,
     destination: destination,
     trainTime: trainTime,
     trainInterval: trainInterval,
-    // minutesAway: minutesAway,
-    nextArrival: nextArrival,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   })
 
@@ -59,30 +53,7 @@ db.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
   var col5 = $("<div class=col-md-2></div>");
   var hr = $("<hr>");
 
-  col1.text(sv.trainName);
-  col2.text(sv.destination);
-  col3.text(sv.trainTime);
-  col4.text(sv.trainInterval);
-  col5.text(sv.minutesAway);
-
-  row.append(col1);
-  row.append(col2);
-  row.append(col3);
-  row.append(col4);
-  row.append(col5);
-  row.append(hr);
-
-  $("#employee-data").append(row);
-
-}, function(errorObject) {
-  console.log("Errors handled: " + errorObject.code);
-});
-
-
-
-
-
-
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
@@ -90,25 +61,57 @@ db.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
 
 // Get train's first time, user time, and interval time
 
-// do while would be the correct logic for finding when the next arrival will be.
+// get first Train time, is it greater than current time? if not add interval time, is that time greater than current time? if not, keep adding until it is greater. Once it is greater, that is the next arrival time.
 
-// get first time, is it greater than current time? if not add interval time, is that time greater than current time? if not, keep adding until it is greater. Once it is greater, that is the next arrival time.
-
-function getNextArrival(firstTime, intervalTime){
+  // Putting current time & Train TIme into format I can work with
   var currentTime = momentify(moment().format("HH:mm:ss"));
-  var nextArrival = momentify(firstTime);
+  var nextArrival = momentify(sv.trainTime);
+
+  // Comparing current time against next arrival until I have surpased the current time
   while (currentTime >= nextArrival){
-    nextArrival.add(intervalTime, 'minutes');
+
+    // Notice I'm using interval time from the firebase object created
+    nextArrival.add(sv.trainInterval, 'minutes');
   };
-  return nextArrival;
-};
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  // Calculating "Minutes Away" field
+
+  // Take current time and next arrival time. Get difference of these two times
+
+  // Print the difference
+  
+  var minutesAway = moment(nextArrival).diff(currentTime, "minutes");
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  // Process of printing Values to the screen
+  col1.text(sv.trainName);
+  col2.text(sv.destination);
+  col3.text(sv.trainInterval);
+  col4.text(nextArrival.format("hh:mm a"));
+  col5.text(minutesAway);
+
+  // Process of printing Values to the screen
+  row.append(col1);
+  row.append(col2);
+  row.append(col3);
+  row.append(col4);
+  row.append(col5);
+  row.append(hr);
+
+  // Printing Values to the screen
+  $("#employee-data").append(row);
+
+}, function(errorObject) {
+  console.log("Errors handled: " + errorObject.code);
+});
 
 
+// This function takes time in a string format (ie. "01:00:00") and properly applies moment functionality to it using "HH:mm:ss" format to it. Meaning it will be 24 hour time.
 function momentify (time) {
-
   var date = time;
   var format = "HH:mm:ss";
   return moment(date, format);
-
-
 }
