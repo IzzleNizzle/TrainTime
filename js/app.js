@@ -30,15 +30,15 @@ $("#submit-train").on("click", function () {
   destination = $("#destination").val().trim();
   trainTime = $("#train-time").val().trim();
   trainInterval = $("#train-interval").val().trim();
-  nextArrival = getNextArrival(trainTime, trainInterval);
-  minutesAway = getMinutesAway();
-
+  nextArrival = moment(getNextArrival(trainTime, trainInterval)).format("HH:mm:ss");
+  // minutesAway = getMinutesAway();
+  
   db.ref().push({
     trainName: trainName,
     destination: destination,
     trainTime: trainTime,
     trainInterval: trainInterval,
-    minutesAway: minutesAway,
+    // minutesAway: minutesAway,
     nextArrival: nextArrival,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   })
@@ -81,6 +81,11 @@ db.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
 
 
 
+
+
+
+
+
 // Process when the next arrival train will come
 
 // Get train's first time, user time, and interval time
@@ -90,5 +95,20 @@ db.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
 // get first time, is it greater than current time? if not add interval time, is that time greater than current time? if not, keep adding until it is greater. Once it is greater, that is the next arrival time.
 
 function getNextArrival(firstTime, intervalTime){
-    var currentTime = 1;
+  var currentTime = momentify(moment().format("HH:mm:ss"));
+  var nextArrival = momentify(firstTime);
+  while (currentTime >= nextArrival){
+    nextArrival.add(intervalTime, 'minutes');
+  };
+  return nextArrival;
 };
+
+
+function momentify (time) {
+
+  var date = time;
+  var format = "HH:mm:ss";
+  return moment(date, format);
+
+
+}
